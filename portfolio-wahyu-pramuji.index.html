@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wahyu Pramuji — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:       #0D0D0B;
+    --surface:  #151512;
+    --card:     #1C1C18;
+    --border:   #2A2A24;
+    --gold:     #C9A84C;
+    --gold-dim: #7A6228;
+    --cream:    #EDE8DC;
+    --muted:    #7A7A6E;
+    --text:     #E8E4D8;
+    --accent:   #D4855A;
+
+    --serif:    'DM Serif Display', Georgia, serif;
+    --sans:     'Inter', system-ui, sans-serif;
+    --mono:     'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(13,13,11,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(212,133,90,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .hero-desc {
+    max-width: 520px;
+    font-size: 15px;
+    color: var(--text);
+    opacity: 0.8;
+    margin-bottom: 52px;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    padding: 12px 28px;
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #dab95a; transform: translateY(-2px); }
+  .btn-ghost {
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text);
+    opacity: 0.85;
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .skills-group-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+  .skills-group-title:first-child { margin-top: 0; }
+
+  /* ── EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+  .exp-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    transition: border-color 0.2s;
+    cursor: default;
+  }
+  .exp-item:hover { border-color: var(--gold-dim); }
+  .exp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .exp-category {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .exp-body {}
+  .exp-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .exp-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .exp-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 4px 10px;
+    background: var(--card);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  /* ── COMPETENCIES ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .comp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .comp-card:hover {
+    border-color: var(--gold-dim);
+    background: var(--card);
+  }
+  .comp-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .comp-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .comp-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .edu-card:hover::before { opacity: 1; }
+  .edu-period {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .edu-school {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .edu-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 72px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto 100px;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .contact-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .contact-desc {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-item {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ── DIVIDER ── */
+  .full-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 40px;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero, section { padding: 100px 20px 60px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .exp-item { grid-template-columns: 1fr; gap: 12px; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-section { padding: 48px 24px; margin: 0 20px 60px; }
+    .hero-stats { gap: 28px; }
+    footer { padding: 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">W. Pramuji</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#competencies">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Portfolio 2025</p>
+    <h1 class="hero-name">Wahyu<br /><em>Pramuji</em></h1>
+    <p class="hero-tagline">Hospitality · Guest Relations · Event & Diplomacy</p>
+    <p class="hero-desc">
+      Multi-disciplinary professional with hands-on experience in F&B operations, international parliamentary support, and customer-facing roles. Adaptive, calm under pressure, and committed to delivering quality service in any environment.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years of Education</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Industry Roles</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Sectors Mastered</div>
+      </div>
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Survey Respondents Handled</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-label">Who I Am</span>
+    <h2 class="section-title">Background</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I am a final-semester International Relations student at Universitas Pasundan, graduating in 2025. My academic background covers diplomacy, international organizations, and policy analysis, with a thesis focused on Indonesia's nation branding through commodity exports.
+      </p>
+      <p>
+        Beyond the classroom, I have worked across two industries: F&B and government-diplomatic support. Each role sharpened a different side of my character, from managing bar operations and stock under a fast-paced service environment, to coordinating social media content for a national parliamentary assembly.
+      </p>
+      <p>
+        I am comfortable working alone or within a team, adapting quickly to new workflows, and maintaining high standards whether behind the bar or in front of guests and officials.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="skills-group-title">F&B & Hospitality</div>
+      <div class="skills-list">
+        <span class="skill-tag">Bar Operations</span>
+        <span class="skill-tag">POS System</span>
+        <span class="skill-tag">Stock Management</span>
+        <span class="skill-tag">FIFO / FEFO</span>
+        <span class="skill-tag">Menu Preparation</span>
+        <span class="skill-tag">Sanitation SOP</span>
+        <span class="skill-tag">Cooking</span>
+        <span class="skill-tag">Quality Control</span>
+      </div>
+      <div class="skills-group-title">Professional & Soft Skills</div>
+      <div class="skills-list">
+        <span class="skill-tag">Leadership</span>
+        <span class="skill-tag">Communication</span>
+        <span class="skill-tag">Guest Relations</span>
+        <span class="skill-tag">Under Pressure Work</span>
+        <span class="skill-tag">Team & Individual Work</span>
+        <span class="skill-tag">Cooperative</span>
+        <span class="skill-tag">Adaptive</span>
+      </div>
+      <div class="skills-group-title">Technical & Digital</div>
+      <div class="skills-list">
+        <span class="skill-tag">Microsoft Office</span>
+        <span class="skill-tag">Digital Design</span>
+        <span class="skill-tag">Social Media Strategy</span>
+        <span class="skill-tag">Content Writing</span>
+        <span class="skill-tag">English (Oral & Written)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-label">Where I've Worked</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-period">Oct 2025 — Jan 2026</span>
+        <span class="exp-category">F&B</span>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title">Matcharista</h3>
+        <p class="exp-company">Noisy Matcha</p>
+        <p class="exp-desc">
+          Managed full opening and closing procedures, including stock checks, daily POS sales reporting, and post-service sanitation. Prepared and presented menu items following company SOPs. Maintained bar area cleanliness and ensured all equipment met sterility standards. Oversaw raw material stock turnover and maintained stocking lists independently.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">Bar Operations</span>
+          <span class="exp-tag">POS Reporting</span>
+          <span class="exp-tag">SOP Compliance</span>
+          <span class="exp-tag">Stock Control</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-period">Oct — Dec 2024</span>
+        <span class="exp-category">Hospitality</span>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title">Barback</h3>
+        <p class="exp-company">W Superclub</p>
+        <p class="exp-desc">
+          Supported bartenders in a high-volume club environment. Prepared utensils, maintained a clean bar station, and restocked products using FIFO and FEFO standards. Conducted quality control on garnish and fruit platter ingredients. Completed daily checklists for Board of Directors bar areas, ensuring operational consistency under pressure.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">FIFO / FEFO</span>
+          <span class="exp-tag">Quality Control</span>
+          <span class="exp-tag">High-Volume Service</span>
+          <span class="exp-tag">Daily Checklists</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-period">Aug 2024</span>
+        <span class="exp-category">Research</span>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title">Customer Satisfaction Surveyor</h3>
+        <p class="exp-company">Astra Daihatsu Motors — GIIAS (Freelance)</p>
+        <p class="exp-desc">
+          Collected sales vehicle order letter (SVOL) data at GIIAS 2024, successfully reaching a target of 200 respondents. Fitted and calibrated Tobii VR devices for each participant, then recorded respondent IDs for eye-tracking research. Applied precision and attention to detail in a time-sensitive, high-traffic exhibition environment.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">Data Collection</span>
+          <span class="exp-tag">VR Device Calibration</span>
+          <span class="exp-tag">Respondent Management</span>
+          <span class="exp-tag">Field Research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-period">Jul — Aug 2023</span>
+        <span class="exp-category">Government / Diplomacy</span>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title">Internship — Host Secretariat</h3>
+        <p class="exp-company">DPR RI — ASEAN Inter-Parliamentary Assembly (AIPA)</p>
+        <p class="exp-desc">
+          Served as Team Leader for BKSAP DPR RI social media communications during the AIPA event. Led planning and strategy for content creation, drafted written content for official publication, and carried full accountability for the accuracy and timeliness of content uploads. Worked directly within a diplomatic and parliamentary context requiring precision and professional conduct.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">Content Strategy</span>
+          <span class="exp-tag">Team Leadership</span>
+          <span class="exp-tag">Parliamentary Support</span>
+          <span class="exp-tag">Diplomatic Context</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <div class="section-header reveal">
+    <span class="section-label">What I Bring</span>
+    <h2 class="section-title">Core Competencies</h2>
+  </div>
+  <div class="comp-grid">
+    <div class="comp-card reveal">
+      <span class="comp-icon">☕</span>
+      <h3 class="comp-title">F&B Operations</h3>
+      <p class="comp-desc">
+        Trained in full bar lifecycle management: from prep and service to POS reporting and closing. Familiar with specialty beverage standards and venue-level hygiene protocols.
+      </p>
+    </div>
+    <div class="comp-card reveal">
+      <span class="comp-icon">🤝</span>
+      <h3 class="comp-title">Guest Relations</h3>
+      <p class="comp-desc">
+        Natural communicator with experience across club, café, and institutional environments. Focused on creating smooth, professional interactions at every guest touchpoint.
+      </p>
+    </div>
+    <div class="comp-card reveal">
+      <span class="comp-icon">🌐</span>
+      <h3 class="comp-title">Event & Diplomacy Support</h3>
+      <p class="comp-desc">
+        Supported ASEAN-level parliamentary events, managing communications, content, and team coordination. Comfortable in formal, protocol-heavy professional settings.
+      </p>
+    </div>
+    <div class="comp-card reveal">
+      <span class="comp-icon">📋</span>
+      <h3 class="comp-title">Operational Discipline</h3>
+      <p class="comp-desc">
+        Rigorous about SOP compliance, checklist completion, and inventory accuracy. Proven ability to maintain standards in high-pressure, high-volume environments without supervision.
+      </p>
+    </div>
+    <div class="comp-card reveal">
+      <span class="comp-icon">✏️</span>
+      <h3 class="comp-title">Content & Communication</h3>
+      <p class="comp-desc">
+        Experienced in institutional social media content planning and writing. Skilled in digital design and producing written materials in both Indonesian and English.
+      </p>
+    </div>
+    <div class="comp-card reveal">
+      <span class="comp-icon">🔄</span>
+      <h3 class="comp-title">Adaptability</h3>
+      <p class="comp-desc">
+        Transitioned fluidly between a specialty matcha bar, a high-energy superclub, a car brand field survey, and a national parliament. Fast to learn, fast to contribute.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-label">Academic Background</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <p class="edu-period">2020 — 2025</p>
+      <h3 class="edu-degree">S1 International Relations</h3>
+      <p class="edu-school">Universitas Pasundan</p>
+      <p class="edu-note">
+        Final semester student. Thesis focus: Indonesia's nation branding strategy through specialty commodity exports under the GRATIEKS framework. Active in campus organizations covering sponsorship and diplomacy.
+      </p>
+    </div>
+    <div class="edu-card reveal">
+      <p class="edu-period">2017 — 2020</p>
+      <h3 class="edu-degree">Airframe & Powerplant</h3>
+      <p class="edu-school">SMK Penerbangan Dirgantara — Aviation School</p>
+      <p class="edu-note">
+        Graduated with a certification in Safety Management Systems. Built a foundation in technical discipline, precision procedures, and systematic problem-solving that carries into every professional role.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider" />
+
+<!-- CONTACT -->
+<div class="contact-section reveal" id="contact">
+  <p class="contact-sub">Open to Opportunities</p>
+  <h2 class="contact-title">Let's Work Together</h2>
+  <p class="contact-desc">
+    Available for full-time, part-time, and freelance roles in F&B, hospitality, guest relations, and event support.
+  </p>
+  <div class="contact-links">
+    <a href="tel:081944225120" class="contact-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      081944225120
+    </a>
+    <a href="mailto:Hitmeup.pramsss512@gmail.com" class="contact-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Hitmeup.pramsss512@gmail.com
+    </a>
+    <a href="https://instagram.com/wahyuprmji" target="_blank" class="contact-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @wahyuprmji
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Wahyu Pramuji</span>
+  <span>Bandung, Indonesia</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
